@@ -93,14 +93,15 @@ const ArticleRow = (props: Props) => {
         <p>{article.summary}</p>
         <ArticleMeta>
           <img
-            alt={(user.details && user.details.fullName) || 'author'}
+            alt={(user && user.details && user.details.fullName) || 'author'}
             src={getUserAvatar(user)}
           />
           {__('Written By')}
           <AuthorName>
-            {(user.details && user.details.fullName) ||
-              user.username ||
-              user.email}
+            {user &&
+              ((user.details && user.details.fullName) ||
+                user.username ||
+                user.email)}
           </AuthorName>
           <Icon icon="clock-eight" /> {__('Created')}{' '}
           {dayjs(article.createdDate).format('ll')}
